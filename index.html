@@ -1,192 +1,229 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>우리 지역 환경오염 조사 프로젝트</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen bg-gradient-to-b from-green-100 via-blue-50 to-yellow-50 p-6 md:p-10">
+<body class="bg-gradient-to-b from-green-100 via-blue-50 to-yellow-50 min-h-screen p-6">
 
-  <div class="max-w-6xl mx-auto space-y-8">
+<div class="max-w-6xl mx-auto space-y-8">
 
-    <header class="bg-white rounded-3xl shadow-lg p-8 text-center border-4 border-green-200">
-      <div class="text-5xl mb-4">
-        🌍 ♻️ 🍃 🗑️
-      </div>
+  <!-- 헤더 -->
+  <header class="bg-white rounded-3xl shadow-lg p-8 text-center border-4 border-green-200">
+    <div class="text-5xl mb-4">🌍 ♻️ 🍃 🗑️ 📷</div>
+    <h1 class="text-4xl font-bold mb-4">우리 지역 환경오염 조사 프로젝트</h1>
+    <p class="text-lg text-gray-700 leading-relaxed">
+      우리 지역의 환경 문제를 직접 조사하고<br>
+      사진 기록과 AI 분석을 통해 해결 방안을 찾아보는<br>
+      조별 창의적 체험활동 프로젝트입니다.
+    </p>
+  </header>
 
-      <h1 class="text-4xl font-bold mb-3">
-        🌍 우리 지역 환경오염 조사 프로젝트 🌱
-      </h1>
+  <!-- 조별 활동 -->
+  <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-blue-200">
+    <h2 class="text-2xl font-bold mb-4">📢 6개 조별 활동 안내</h2>
+    <p class="text-gray-700 mb-6">
+      각 조는 아래 활동 중 하나 이상을 선택하여 조사하고 보고서를 작성합니다.
+      조를 클릭하면 해당 조의 활동 보고서를 작성할 수 있습니다.
+    </p>
 
-      <p class="text-lg text-gray-700 leading-relaxed">
-        우리 지역의 환경 문제를 직접 조사하고 사진으로 기록하며<br>
-        6개 조가 함께 해결 방안을 찾아보는 창의적 체험활동 프로젝트입니다.
-      </p>
-    </header>
+    <div class="grid md:grid-cols-2 gap-4 mb-6">
+      <div class="p-4 rounded-2xl border bg-green-50">✔ 우리 지역 쓰레기 문제 조사</div>
+      <div class="p-4 rounded-2xl border bg-blue-50">✔ 하천 및 공원 환경 조사</div>
+      <div class="p-4 rounded-2xl border bg-yellow-50">✔ 가정 에너지 절약 실천</div>
+      <div class="p-4 rounded-2xl border bg-pink-50">✔ 학교 주변 환경 개선 활동</div>
+      <div class="p-4 rounded-2xl border bg-purple-50">✔ 환경 보호 캠페인 참여</div>
+      <div class="p-4 rounded-2xl border bg-orange-50">✔ 지역 환경오염 해결 방안 제안</div>
+    </div>
 
-    <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-blue-200">
-      <h2 class="text-2xl font-bold mb-4">📢 조별 활동 안내</h2>
+    <div class="grid md:grid-cols-3 gap-4">
+      <button onclick="selectTeam('1조')" class="p-4 rounded-2xl border bg-white shadow">1조 보고서 작성</button>
+      <button onclick="selectTeam('2조')" class="p-4 rounded-2xl border bg-white shadow">2조 보고서 작성</button>
+      <button onclick="selectTeam('3조')" class="p-4 rounded-2xl border bg-white shadow">3조 보고서 작성</button>
+      <button onclick="selectTeam('4조')" class="p-4 rounded-2xl border bg-white shadow">4조 보고서 작성</button>
+      <button onclick="selectTeam('5조')" class="p-4 rounded-2xl border bg-white shadow">5조 보고서 작성</button>
+      <button onclick="selectTeam('6조')" class="p-4 rounded-2xl border bg-white shadow">6조 보고서 작성</button>
+    </div>
+  </section>
 
-      <p class="text-gray-700 mb-6">
-        각 조는 지정된 환경 문제를 조사하고, 현장 사진 촬영 및 실천 활동을 진행합니다.
-        조사 결과를 바탕으로 해결 방안을 제안하고 발표 자료를 제작하여 공유합니다.
-      </p>
+  <!-- 기록지 -->
+  <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-yellow-200 space-y-4">
+    <h2 class="text-2xl font-bold">📝 환경오염 조사 기록지</h2>
 
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-green-50 rounded-2xl p-4 border font-semibold">1조 - 대기오염 조사팀</div>
-        <div class="bg-blue-50 rounded-2xl p-4 border font-semibold">2조 - 수질오염 조사팀</div>
-        <div class="bg-yellow-50 rounded-2xl p-4 border font-semibold">3조 - 쓰레기 문제 조사팀</div>
-        <div class="bg-pink-50 rounded-2xl p-4 border font-semibold">4조 - 소음공해 조사팀</div>
-        <div class="bg-purple-50 rounded-2xl p-4 border font-semibold">5조 - 에너지 절약 실천팀</div>
-        <div class="bg-orange-50 rounded-2xl p-4 border font-semibold">6조 - 환경보호 캠페인팀</div>
-      </div>
-    </section>
+    <input id="team" class="w-full border rounded-xl p-3" placeholder="조 이름 입력" readonly>
+    <input id="date" type="date" class="w-full border rounded-xl p-3">
+    <input id="place" class="w-full border rounded-xl p-3" placeholder="조사 장소 입력">
 
-    <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-yellow-200 space-y-6">
-      <h2 class="text-2xl font-bold">📸 환경오염 조사 기록지</h2>
+    <textarea id="problem" class="w-full border rounded-xl p-3 min-h-[120px]" placeholder="발견한 환경오염 문제를 작성하세요"></textarea>
 
-      <div class="grid md:grid-cols-2 gap-4">
-        <input class="border rounded-2xl p-3" id="team" placeholder="조 이름 입력">
-        <input class="border rounded-2xl p-3" id="date" placeholder="조사 날짜 입력">
-      </div>
+    <textarea id="cause" class="w-full border rounded-xl p-3 min-h-[120px]" placeholder="환경오염의 원인을 작성하세요"></textarea>
+    <p class="text-sm text-blue-600">예시) 분리수거 부족, 생활하수 무단 배출, 차량 증가로 인한 미세먼지 발생</p>
 
-      <input class="border rounded-2xl p-3 w-full" id="place" placeholder="조사 장소 입력">
+    <textarea id="solution" class="w-full border rounded-xl p-3 min-h-[120px]" placeholder="해결 방안을 작성하세요"></textarea>
+    <p class="text-sm text-blue-600">예시) 분리수거 캠페인 운영, 하천 정화 활동 실시, 대중교통 이용 활성화</p>
 
-      <textarea
-        class="w-full border rounded-2xl p-3 min-h-[120px]"
-        id="problem"
-        placeholder="발견한 환경오염 문제를 자세히 작성하세요"></textarea>
+    <!-- 사진 업로드 -->
+    <div class="border-2 border-dashed rounded-2xl p-6 text-center space-y-4">
+      <p>📷 사진 업로드</p>
+      <input type="file" id="photoUpload" accept="image/*" onchange="previewImage(event)">
+      <img id="preview" class="hidden max-w-md mx-auto rounded-2xl shadow" alt="사진 미리보기">
+    </div>
+  </section>
 
-      <textarea
-        class="w-full border rounded-2xl p-3 min-h-[120px]"
-        id="solution"
-        placeholder="문제의 원인과 해결 방법을 작성하세요"></textarea>
+  <!-- AI 분석 -->
+  <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-purple-200">
+    <h2 class="text-2xl font-bold mb-4">🤖 AI 환경오염 분석</h2>
+    <button onclick="runAIAnalysis()" class="px-6 py-3 rounded-2xl border-4 border-purple-200 font-semibold">
+      AI 분석 실행하기
+    </button>
 
-      <div class="border-2 border-dashed rounded-2xl p-6 text-center space-y-4">
-        <p>📷 현장 사진을 첨부하는 공간</p>
-        <input type="file" id="photoUpload" accept="image/*" class="border p-2 rounded-xl w-full" onchange="previewImage(event)">
-        <img id="preview" class="max-w-md mx-auto rounded-2xl shadow hidden" alt="미리보기">
-      </div>
-    </section>
+    <div id="aiResult" class="mt-4 bg-purple-50 rounded-2xl p-4 min-h-[150px] whitespace-pre-line">
+      아직 분석 결과가 없습니다.
+    </div>
+  </section>
 
-    <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-green-200">
-      <h2 class="text-2xl font-bold mb-4">✅ 활동 체크리스트</h2>
+  <!-- 캠페인 활동 계획 -->
+  <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-green-300 space-y-4">
+    <h2 class="text-2xl font-bold mb-2">🌱 우리 조의 환경 보호 캠페인 구상하기</h2>
+    <textarea id="campaign" class="w-full border rounded-xl p-3 min-h-[140px]" placeholder="우리 조가 실천할 환경 보호 캠페인 활동 계획을 작성하세요"></textarea>
+    <p class="text-sm text-blue-600">예시) 점심시간 분리수거 캠페인, 학교 주변 쓰레기 줍기, 절전 실천 홍보 포스터 제작</p>
+  </section>
 
-      <div class="space-y-3">
-        <label class="flex items-center gap-3"><input type="checkbox"> 분리수거 실천하기</label>
-        <label class="flex items-center gap-3"><input type="checkbox"> 가정 에너지 절약하기</label>
-        <label class="flex items-center gap-3"><input type="checkbox"> 학교 주변 쓰레기 줍기</label>
-        <label class="flex items-center gap-3"><input type="checkbox"> 하천 및 공원 환경 조사하기</label>
-        <label class="flex items-center gap-3"><input type="checkbox"> 환경 보호 캠페인 참여하기</label>
-        <label class="flex items-center gap-3"><input type="checkbox"> 우리 조 활동 결과 발표하기</label>
-      </div>
-    </section>
+  <!-- 주민 설문지 작성 -->
+  <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-indigo-200 space-y-4">
+    <h2 class="text-2xl font-bold mb-2">📋 주민 대상 환경오염 설문지 작성 (리커트 척도)</h2>
+    <p class="text-sm text-blue-600">질문을 입력하면 1~5점 척도(매우 아니다 ~ 매우 그렇다)의 설문지가 생성됩니다.</p>
+    <input id="surveyQ1" class="w-full border rounded-xl p-3" placeholder="질문 1 입력">
+    <input id="surveyQ2" class="w-full border rounded-xl p-3" placeholder="질문 2 입력">
+    <input id="surveyQ3" class="w-full border rounded-xl p-3" placeholder="질문 3 입력">
+    <button onclick="saveSurveyFile()" class="px-6 py-3 rounded-2xl border-4 border-indigo-200 font-semibold bg-white">
+      📝 설문지 파일로 저장하기
+    </button>
+  </section>
 
-    <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-purple-200 space-y-4">
-      <h2 class="text-2xl font-bold">🤖 AI 환경오염 분석</h2>
-      <p class="text-gray-700">입력한 조사 내용을 바탕으로 AI가 간단한 분석과 개선 방향을 제안합니다.</p>
-      <button onclick="runAIAnalysis()" class="px-6 py-3 rounded-2xl border-4 border-purple-200 font-semibold bg-white">
-        AI 분석 실행하기
-      </button>
-      <div id="aiResult" class="bg-purple-50 rounded-2xl p-4 min-h-[120px] text-left whitespace-pre-line">
-        아직 분석 결과가 없습니다.
-      </div>
-    </section>
+  <!-- 관리자 페이지 -->
+  <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-red-200">
+    <h2 class="text-2xl font-bold mb-4">🛠 관리자 페이지</h2>
+    <div class="grid md:grid-cols-3 gap-4 mb-4">
+      <div class="border rounded-2xl p-4">총 참여 조 : 6개 조</div>
+      <div class="border rounded-2xl p-4">제출 완료 조 : 확인 필요</div>
+      <div class="border rounded-2xl p-4">미제출 조 : 확인 필요</div>
+    </div>
 
-    <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-red-200 space-y-4">
-      <h2 class="text-2xl font-bold">🛠 관리자 페이지</h2>
-      <p class="text-gray-700">교사가 전체 조별 활동을 확인하고 관리할 수 있는 영역입니다.</p>
-      <div class="grid md:grid-cols-3 gap-4">
-        <div class="border rounded-2xl p-4">총 참여 조: 6개 조</div>
-        <div class="border rounded-2xl p-4">제출 완료 조: 확인 필요</div>
-        <div class="border rounded-2xl p-4">미제출 조: 확인 필요</div>
-      </div>
-      <textarea class="w-full border rounded-2xl p-3 min-h-[100px]" placeholder="교사 피드백 및 공지사항 입력"></textarea>
-    </section>
+    <textarea class="w-full border rounded-xl p-3 min-h-[100px]" placeholder="교사 피드백 및 공지사항 입력"></textarea>
+  </section>
 
-    <section class="text-center">
-      <button
-        onclick="saveToFile()"
-        class="px-8 py-4 rounded-2xl shadow-lg bg-white border-4 border-blue-200 font-semibold text-lg">
-        💾 활동 내용 파일로 저장하기
-      </button>
-    </section>
+  <!-- 저장 버튼 -->
+  <section class="text-center">
+    <button onclick="saveToFile()" class="px-8 py-4 rounded-2xl shadow-lg bg-white border-4 border-blue-200 text-lg font-semibold">
+      💾 활동 내용 파일로 저장하기
+    </button>
+  </section>
 
-    <footer class="text-center text-gray-600 py-6 font-medium">
-      창의적 체험활동 · 조별 융합과학 프로젝트
-    </footer>
+  <footer class="text-center text-gray-600 py-6 font-medium">
+    창의적 체험활동 · 융합과학 프로젝트
+  </footer>
 
-  </div>
+</div>
 
-  <script>
-    function previewImage(event) {
-      const preview = document.getElementById('preview');
-      preview.src = URL.createObjectURL(event.target.files[0]);
-      preview.classList.remove('hidden');
-    }
+<script>
+function selectTeam(teamName) {
+  document.getElementById('team').value = teamName;
+  window.scrollTo({ top: document.getElementById('team').offsetTop - 100, behavior: 'smooth' });
+}
 
-    function runAIAnalysis() {
-      const problem = document.getElementById('problem').value;
-      const solution = document.getElementById('solution').value;
-      const resultBox = document.getElementById('aiResult');
+function previewImage(event) {
+  const preview = document.getElementById('preview');
+  preview.src = URL.createObjectURL(event.target.files[0]);
+  preview.classList.remove('hidden');
+}
 
-      let analysis = "[AI 분석 결과]
+function runAIAnalysis() {
+  const problem = document.getElementById('problem').value;
+  const cause = document.getElementById('cause').value;
+  const cause = document.getElementById('cause').value;
+  const solution = document.getElementById('solution').value;
+  const campaign = document.getElementById('campaign').value;
+  const result = document.getElementById('aiResult');
 
-";
+  let text = "[AI 분석 결과]\n\n";
 
-      if (problem.includes('쓰레기')) {
-        analysis += "• 쓰레기 문제는 분리수거와 지역 캠페인이 중요합니다.
-";
-      }
-      if (problem.includes('대기') || problem.includes('미세먼지')) {
-        analysis += "• 대기오염은 차량 이용 감소와 대중교통 활성화가 필요합니다.
-";
-      }
-      if (problem.includes('하천') || problem.includes('수질')) {
-        analysis += "• 수질오염은 생활하수 관리와 정화 활동이 중요합니다.
-";
-      }
-      if (analysis === "[AI 분석 결과]
+  if (problem.includes('쓰레기')) {
+    text += "• 분리수거 강화와 지역 캠페인이 필요합니다.\n";
+  }
+  if (problem.includes('대기') || problem.includes('미세먼지')) {
+    text += "• 대중교통 이용 확대와 차량 감축이 중요합니다.\n";
+  }
+  if (problem.includes('하천') || problem.includes('수질')) {
+    text += "• 하천 정화 활동과 생활하수 관리가 필요합니다.\n";
+  }
+  if (text === "[AI 분석 결과]\n\n") {
+    text += "• 지속적인 조사와 지역 참여 활동이 필요합니다.\n";
+  }
 
-") {
-        analysis += "• 조사 내용을 바탕으로 지속적인 관찰과 지역 참여 활동이 필요합니다.
-";
-      }
+  text += "\n[환경오염 원인]
+" + (cause || "입력된 내용이 없습니다.") + "
 
-      analysis += "
-[학생이 제안한 해결방안]
-" + (solution || "아직 입력되지 않았습니다.");
-      resultBox.textContent = analysis;
-    }
+[학생 해결방안]\n" + (solution || "입력된 내용이 없습니다.");
+  result.textContent = text;
+}
 
-    function saveToFile() {
-      const team = document.getElementById('team').value;
-      const date = document.getElementById('date').value;
-      const place = document.getElementById('place').value;
-      const problem = document.getElementById('problem').value;
-      const solution = document.getElementById('solution').value;
+function saveSurveyFile() {
+  const q1 = document.getElementById('surveyQ1').value;
+  const q2 = document.getElementById('surveyQ2').value;
+  const q3 = document.getElementById('surveyQ3').value;
 
-      const content =
-`우리 지역 환경오염 조사 프로젝트
+  const scale = "1 매우 아니다 / 2 아니다 / 3 보통이다 / 4 그렇다 / 5 매우 그렇다";
 
-조 이름: ${team}
-조사 날짜: ${date}
-조사 장소: ${place}
+  const content = `주민 대상 환경오염 설문지 (리커트 척도)
 
-발견한 환경오염 문제:
+${scale}
+
+1. ${q1}
+□1 □2 □3 □4 □5
+
+2. ${q2}
+□1 □2 □3 □4 □5
+
+3. ${q3}
+□1 □2 □3 □4 □5`;
+
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = '환경오염_주민설문지.txt';
+  link.click();
+}
+
+function saveToFile() {
+  const team = document.getElementById('team').value;
+  const date = document.getElementById('date').value;
+  const place = document.getElementById('place').value;
+  const problem = document.getElementById('problem').value;
+  const cause = document.getElementById('cause').value;
+  const solution = document.getElementById('solution').value;
+
+  const content = `우리 지역 환경오염 조사 프로젝트\n\n조 이름: ${team}\n조사 날짜: ${date}\n조사 장소: ${place}\n\n환경오염 문제:
 ${problem}
 
-원인 및 해결 방법:
-${solution}`;
+원인:
+${cause}
 
-      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = '환경오염_조별활동_기록.txt';
-      link.click();
-    }
-  </script>
+해결 방안:
+${solution}
+
+환경 보호 캠페인 계획:
+${campaign}`;
+
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = '환경오염_조별활동_기록.txt';
+  link.click();
+}
+</script>
 
 </body>
 </html>
