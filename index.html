@@ -122,13 +122,25 @@
   <!-- 관리자 페이지 -->
   <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-red-200">
     <h2 class="text-2xl font-bold mb-4">🛠 관리자 페이지</h2>
-    <div class="grid md:grid-cols-3 gap-4 mb-4">
-      <div class="border rounded-2xl p-4">총 참여 조 : 6개 조</div>
-      <div class="border rounded-2xl p-4">제출 완료 조 : 확인 필요</div>
-      <div class="border rounded-2xl p-4">미제출 조 : 확인 필요</div>
+
+    <div id="adminLogin" class="space-y-4">
+      <p class="text-sm text-blue-600">관리자 페이지는 담당 교사만 접근할 수 있습니다.</p>
+      <input id="adminId" class="w-full border rounded-xl p-3" placeholder="교사 아이디 입력">
+      <input id="adminPw" type="password" class="w-full border rounded-xl p-3" placeholder="비밀번호 입력">
+      <button onclick="checkAdminLogin()" class="px-6 py-3 rounded-2xl border-4 border-red-200 font-semibold bg-white">
+        관리자 로그인
+      </button>
     </div>
 
-    <textarea class="w-full border rounded-xl p-3 min-h-[100px]" placeholder="교사 피드백 및 공지사항 입력"></textarea>
+    <div id="adminPage" class="hidden">
+      <div class="grid md:grid-cols-3 gap-4 mb-4 mt-4">
+        <div class="border rounded-2xl p-4">총 참여 조 : 6개 조</div>
+        <div class="border rounded-2xl p-4">제출 완료 조 : 확인 필요</div>
+        <div class="border rounded-2xl p-4">미제출 조 : 확인 필요</div>
+      </div>
+
+      <textarea class="w-full border rounded-xl p-3 min-h-[100px]" placeholder="교사 피드백 및 공지사항 입력"></textarea>
+    </div>
   </section>
 
   <!-- 저장 버튼 -->
@@ -136,6 +148,23 @@
     <button onclick="saveToFile()" class="px-8 py-4 rounded-2xl shadow-lg bg-white border-4 border-blue-200 text-lg font-semibold">
       💾 활동 내용 파일로 저장하기
     </button>
+  </section>
+
+  <!-- 패들렛 제출 안내 -->
+  <section class="bg-white rounded-3xl shadow-lg p-8 border-4 border-cyan-200 text-center space-y-4">
+    <h2 class="text-2xl font-bold">📌 패들렛 제출 안내</h2>
+    <p class="text-blue-600 text-sm leading-relaxed">
+      활동 내용을 파일로 저장한 후 아래 패들렛 링크에 업로드하여 제출하세요.<br>
+      파일 제목은 반드시 조 이름과 함께 작성해주세요.<br>
+      예시) 1조_환경오염조사보고서.txt
+    </p>
+    <a
+      href="https://padlet.com/isumin224/1-6-9dmw5sc2tb7wc0sr"
+      target="_blank"
+      class="inline-block px-8 py-4 rounded-2xl border-4 border-cyan-200 font-semibold bg-white shadow-lg"
+    >
+      🌐 패들렛 바로가기
+    </a>
   </section>
 
   <footer class="text-center text-gray-600 py-6 font-medium">
@@ -184,6 +213,18 @@ function runAIAnalysis() {
 
 [학생 해결방안]\n" + (solution || "입력된 내용이 없습니다.");
   result.textContent = text;
+}
+
+function checkAdminLogin() {
+  const id = document.getElementById('adminId').value;
+  const pw = document.getElementById('adminPw').value;
+
+  if (id === 'lsg2054' && pw === '3221') {
+    document.getElementById('adminLogin').classList.add('hidden');
+    document.getElementById('adminPage').classList.remove('hidden');
+  } else {
+    alert('아이디 또는 비밀번호가 올바르지 않습니다.');
+  }
 }
 
 function saveSurveyFile() {
