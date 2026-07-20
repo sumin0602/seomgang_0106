@@ -411,7 +411,7 @@
     <h2 class="text-2xl font-semibold text-stone-800">📌 패들렛 제출 안내</h2>
     <p class="text-sky-600 text-sm leading-relaxed">
       보고서를 저장하면 파일 이름에 팀 이름이 자동으로 들어가요.<br>
-      예시) <b>1팀_에코히어로즈활동보고서.html</b><br>
+      예시) <b>1팀_에코히어로즈활동보고서.pdf</b><br>
       저장된 파일을 아래 패들렛에 올려서 제출해 주세요.
     </p>
     <a href="https://padlet.com/hk_with_god/padlet-p36xu5evflcpxqdw" target="_blank" class="inline-block px-8 py-4 rounded-xl border border-stone-200 font-semibold bg-white shadow-sm hover:border-cyan-300 hover:bg-cyan-50/60 transition text-stone-700">🌐 에코 히어로즈 패들렛 바로가기</a>
@@ -589,7 +589,7 @@
     <h2 class="text-2xl font-semibold text-stone-800">📌 패들렛 제출 안내</h2>
     <p class="text-blue-600 text-sm leading-relaxed">
       보고서를 저장하면 파일명에 조 이름이 자동으로 들어갑니다.<br>
-      예시) <b>1조_환경정화활동보고서.html</b><br>
+      예시) <b>1조_환경정화활동보고서.pdf</b><br>
       저장된 파일을 아래 패들렛에 업로드하여 제출하세요.
     </p>
     <a href="https://padlet.com/isumin224/1-6-9dmw5sc2tb7wc0sr" target="_blank" class="inline-block px-8 py-4 rounded-xl border border-stone-200 font-semibold bg-white shadow-sm hover:border-cyan-300 hover:bg-cyan-50/60 transition text-stone-700">🌐 패들렛 바로가기</a>
@@ -905,7 +905,7 @@ function saveSurveyFile(g) {
   downloadBlob(new Blob([content], { type: 'text/plain;charset=utf-8' }), team + '_환경설문지.txt');
 }
 
-// ===== 보고서 저장 (사진 포함 HTML) =====
+// ===== 보고서 저장 (사진 포함 PDF 저장 기능 고침) =====
 function saveReport(g, evt) {
   const team = document.getElementById(g + '_team').value;
   const isMiddle = g === 'm';
@@ -940,9 +940,10 @@ function saveReport(g, evt) {
     return '<div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:14px;white-space:pre-wrap;font-size:13px;color:#333;">' + text + '</div>';
   };
 
+  // PDF로 캡처할 렌더링 영역 좌표 고정 (top: 0, left: -9999px로 변경하여 빈 화면 캡처 방지)
   const container = document.createElement('div');
-  container.style.cssText = 'position:absolute;top:20000px;left:0;width:760px;background:#ffffff;padding:32px;'
-    + 'font-family:"Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.7;color:#222;';
+  container.style.cssText = 'position:fixed;top:0;left:-9999px;width:760px;background:#ffffff;padding:32px;'
+    + 'font-family:"Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.7;color:#222;z-index:-9999;';
 
   container.innerHTML =
       '<h1 style="color:#065f46;border-bottom:3px solid #6ee7b7;padding-bottom:10px;font-size:22px;margin:0 0 16px;">' + heading + '</h1>'
@@ -959,10 +960,9 @@ function saveReport(g, evt) {
     + block(sec6, textBox(get('campaign')))
     + '<p style="margin-top:24px;color:#999;font-size:12px;text-align:center;">' + footerTxt + '</p>';
 
-  // 화면에 보이는 뷰포트만 덮는 로딩 오버레이. 캡처 대상(container)은 문서 훨씬 아래(20000px)에
-  // 있어서 현재 뷰포트와 겹치지 않으므로, 오버레이가 캡처 내용을 가리지 않습니다.
+  // 로딩 오버레이 레이어
   const overlay = document.createElement('div');
-  overlay.style.cssText = 'position:fixed;inset:0;background:#ffffff;z-index:99999;display:flex;'
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(255,255,255,0.9);z-index:99999;display:flex;'
     + 'align-items:center;justify-content:center;font-family:"Noto Sans KR",sans-serif;'
     + 'font-size:18px;font-weight:600;color:#065f46;';
   overlay.textContent = 'PDF를 만들고 있어요... 잠시만 기다려 주세요';
@@ -987,7 +987,7 @@ function saveReport(g, evt) {
       margin: 10,
       filename: fileName,
       image: { type: 'jpeg', quality: 0.92 },
-      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', scrollX: 0, scrollY: 0 },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
       pagebreak: { mode: ['avoid-all', 'css'] }
     }).from(container).save();
@@ -995,8 +995,8 @@ function saveReport(g, evt) {
     console.error(err);
     alert('PDF를 만드는 중 문제가 발생했어요. 다시 시도해 주세요.');
   }).finally(function () {
-    document.body.removeChild(container);
-    document.body.removeChild(overlay);
+    if (document.body.contains(container)) document.body.removeChild(container);
+    if (document.body.contains(overlay)) document.body.removeChild(overlay);
     if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
   });
 }
